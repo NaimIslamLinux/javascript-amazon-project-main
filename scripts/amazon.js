@@ -1,8 +1,10 @@
-//save all products data in an array on product.js file
+//save all products and cart data in an array on product.js || cart.js file
+import { products } from '../data/products.js';
+import { cart, addToCart } from '../data/cart.js';
 
 //make all product to html stucture and looping trough the product array
 let htmlStructure = ``;
-products.forEach(product=>{
+products.forEach(product => {
     htmlStructure += `
         <div class="product-container">
             <div class="product-image-container">
@@ -58,29 +60,21 @@ products.forEach(product=>{
 document.querySelector('.products-grid').innerHTML = htmlStructure;
 
 //makeing interactive the cart
-document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
-  button.addEventListener('click',() => {
-    const productId = button.dataset.productId;
 
-    let matchingItem;
-    cart.forEach(item => {
-      if(item.productId === productId) {
-        matchingItem = item;
-      }
-    });
-    if(matchingItem) {
-      matchingItem.quantity += 1;
-    } else {
-    cart.push({
-      productId: productId,
-      quantity: 1
-    })
-  }
-
+function updateCartQuantity() {
   let cartQuantity = 0;
   cart.forEach((item) => {
     cartQuantity += item.quantity;
   })
   document.querySelector('.js-cart-quantity').textContent = cartQuantity;
+}
+
+document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
+  button.addEventListener('click',() => {
+    const productId = button.dataset.productId;
+
+    addToCart(productId);
+    updateCartQuantity();
+  
   })
 });
