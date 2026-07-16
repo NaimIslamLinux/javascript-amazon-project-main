@@ -3,7 +3,7 @@ import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 
 //loop though the cart and genaret html with js
-let checkoutHTMLSummary = ``;
+let cartHTMLSummary = ``;
 cart.forEach((cartItem) => {
 const productId = cartItem.productId;
 let matchingProduct;
@@ -14,7 +14,7 @@ products.forEach((product) => {
     }
 });
 
-checkoutHTMLSummary += 
+cartHTMLSummary += 
 `
     <div class="cart-item-container">
     <div class="delivery-date">
@@ -95,7 +95,7 @@ checkoutHTMLSummary +=
 `;
 });
 
-document.querySelector('.js-order-summary').innerHTML = checkoutHTMLSummary;
+document.querySelector('.js-order-summary').innerHTML = cartHTMLSummary;
 
 //makeing the delete button ineractive
 document.querySelectorAll('.js-delete-link')
