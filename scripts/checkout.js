@@ -1,6 +1,8 @@
 import { cart, removeFromCart, saveToStorage } from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
+import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
+
 
 //loop though the cart and genaret html with js
 let cartHTMLSummary = ``;
@@ -94,6 +96,9 @@ cartHTMLSummary +=
     
 `;
 });
+
+//get the delivery date and genaret the html
+
 
 document.querySelector('.js-order-summary').innerHTML = cartHTMLSummary;
 
