@@ -51,3 +51,13 @@ export function saveToStorage() {
   localStorage.setItem('cart',JSON.stringify(cart));
 }
 
+export function updateDeliveryOptionId(productId, deliveryId) {
+  let matchingItem;
+    cart.forEach(item => {
+      if(item.productId === productId) {
+        matchingItem = item;
+      }
+    });
+  matchingItem.deliveryOptionId = deliveryId;
+  saveToStorage();
+};
