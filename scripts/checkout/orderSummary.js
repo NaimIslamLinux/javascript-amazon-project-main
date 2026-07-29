@@ -113,8 +113,8 @@ button.addEventListener('click',() => {
     const productContainerHTML = document.querySelector(
         `.js-cart-item-container-${productId}`
     );
-    productContainerHTML.remove();
     saveToStorage();
+    renderOrderSummary();
     renderPaymentSummary();
 })
 });
