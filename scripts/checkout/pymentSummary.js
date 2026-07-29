@@ -9,6 +9,7 @@ let deliveryPriceCents = 0;
 let totalBeforeTaxCents = 0;
 let taxCents = 0;
 let orderTotal = 0;
+let cartQuantity = 0;
 
 cart.forEach(cartItem => {
     const matchingProduct = getProduct(cartItem.productId);
@@ -16,6 +17,8 @@ cart.forEach(cartItem => {
 
     const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
     deliveryPriceCents += deliveryOption.priceCents;
+
+    cartQuantity += cartItem.quantity;
 })
 
 totalBeforeTaxCents = productPriceCents + deliveryPriceCents;
@@ -31,7 +34,7 @@ const pymentSummaryHTML =
           </div>
 
           <div class="payment-summary-row">
-            <div>Items (3):</div>
+            <div>Items (${cartQuantity}):</div>
             <div class="payment-summary-money">$${formatCurrency(productPriceCents)}</div>
           </div>
 
