@@ -4,6 +4,7 @@ import { formatCurrency } from '.././utils/money.js';
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './pymentSummary.js';
+import { renderCheckoutHeader } from './checkoutHeader.js';
 
 
 export function renderOrderSummary() {
@@ -116,6 +117,7 @@ button.addEventListener('click',() => {
     saveToStorage();
     renderOrderSummary();
     renderPaymentSummary();
+    renderCheckoutHeader();
 })
 });
 
