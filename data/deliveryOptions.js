@@ -12,11 +12,39 @@ export function getDeliveryOption(deliveryOptionId) {
 };
 
 export function calculateDeliveryDate(deliveryOption) {
-const today = dayjs();
-    const deliveryDate = today.add(deliveryOption.days, "day");
-    const dateString = deliveryDate.format("dddd, MMMM D");
 
-    return dateString;
+  let deliveryDate = dayjs(); 
+  //const days = deliveryDate.format("dddd");
+  //const dateString = deliveryDate.format("dddd, MMMM D");
+  
+  let reaminingDays = deliveryOption.days;
+
+  while(reaminingDays>0) {
+    deliveryDate = deliveryDate.add(1,'day');
+    
+    const days = deliveryDate.format('dddd');
+    
+    if(!isWeekend(days)) {
+    reaminingDays--;
+    }
+  };
+    
+const dateString = deliveryDate.format("dddd, MMMM D");
+  return dateString;
+};
+
+function isWeekend(days) {
+  const weekendDays = ['Saturday','Sunday'];
+  let isWeekendDay;
+  for(let i = 0;i<weekendDays.length;i++) {
+    if(days === weekendDays[i]) {
+      isWeekendDay = true;
+    }
+  }
+  if (!isWeekendDay) {
+    isWeekendDay = false;
+  }
+return isWeekendDay;
 };
 
 export const deliveryOptions = [
